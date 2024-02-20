@@ -23,3 +23,18 @@ let listArrays = [];
 let draggedItem;
 let dragging = false;
 let currentColumn;
+
+// Create DOM Elements for each line
+function createItemEl(ColumnEl, column, item, index) {
+  // Create list item
+  const listEl = document.createElement("li");
+  listEl.classList.add("drag-item");
+  listEl.textContent = item;
+  listEl.draggable = true;
+  listEl.setAttribute("ondragstart", "drag(event)");
+  listEl.contentEditable = true;
+  listEl.id = index;
+  listEl.setAttribute("onfocusout", `updateItem(${index}, ${column})`);
+  // Append to the DOM
+  ColumnEl.appendChild(listEl);
+}
