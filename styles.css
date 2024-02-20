@@ -23,12 +23,49 @@ body {
   overflow-y: hidden;
 }
 
-h1 {
+h1,
+h3 {
   letter-spacing: 2px;
   text-shadow: 2px 2px 5px black;
+}
+
+h3 {
+  font-size: 2rem;
 }
 
 .main-title {
   text-align: center;
   font-size: 3rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-container {
+  margin: 20px;
+}
+
+.drag-list {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Columns */
+.drag-column {
+  flex: 1;
+  margin: 0 10px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  overflow-x: hidden;
+}
+
+.item-column .header,
+.item-column .solid,
+.item-column .solid:hover,
+.item-column .over {
+  background-color: var(--column-1);
 }
