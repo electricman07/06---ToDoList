@@ -115,4 +115,18 @@ function updateDOM() {
   updateSavedColumns();
 }
 
+// Update Item, Delete if necessary or update Array Value
+function updateItem(id, column) {
+  const selectedArray = listArrays[column];
+  const selectedColumnEl = listColumns[column].children;
+  if (!dragging) {
+    if (!selectedColumnEl[id].textContext) {
+      delete selectedArray[id];
+    } else {
+      selectedArray[id] = selectedColumnEl[id].textContent;
+    }
+    updateDOM();
+  }
+}
+
 updateDOM();
