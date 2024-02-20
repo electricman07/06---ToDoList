@@ -138,4 +138,11 @@ function addToColumn(column) {
   updateDOM();
 }
 
+// Show Add Item Input Box
+function showInputBox(column) {
+  addBtns[column].style.visibility = "hidden";
+  addItemBtns[column].style.display = "flex";
+  addItemContainers[column].style.display = "flex";
+}
+
 updateDOM();
