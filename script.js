@@ -73,6 +73,10 @@ function createItemEl(ColumnEl, column, item, index) {
   listEl.contentEditable = true;
   listEl.id = index;
   listEl.setAttribute("onfocusout", `updateItem(${index}, ${column})`);
+  //   Add trashcan icon
+  const trashCanEl = document.createElement("i");
+  trashCanEl.classList.add("fa-solid", "fa-trash", "icon");
+  listEl.append(trashCanEl);
   // Append to the DOM
   ColumnEl.appendChild(listEl);
 }
