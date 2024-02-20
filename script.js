@@ -166,4 +166,35 @@ function rebuildArrays() {
   updateDOM();
 }
 
+// When item starts dragging
+function(e) {
+    draggedItem = e.target;
+    dragging = true;
+}
+
+// When the Item Enters The Column Area
+function dragEnter(column) {
+  listColumns[column].classList.add("over");
+  currentColumn = column;
+}
+
+// Column allows for item to drop
+function allowDrop(e) {
+  e.preventDefault();
+}
+
+// Dropping Item In Column
+function drop(e) {
+  e.preventDefault();
+  // Remove BAckground Color/Padding
+  listColumns.forEach((column) => {
+    column.classList.remove("over");
+  });
+  // Add Item TO Column
+  const parent = listColumns[currentColumn];
+  parent.appendChild(draggedItem);
+  // Dragging complete
+  dragging = false;
+  rebuildArrays();
+}
 updateDOM();
