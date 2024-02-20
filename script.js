@@ -120,7 +120,7 @@ function updateItem(id, column) {
   const selectedArray = listArrays[column];
   const selectedColumnEl = listColumns[column].children;
   if (!dragging) {
-    if (!selectedColumnEl[id].textContext) {
+    if (!selectedColumnEl[id].textContent) {
       delete selectedArray[id];
     } else {
       selectedArray[id] = selectedColumnEl[id].textContent;
@@ -131,24 +131,24 @@ function updateItem(id, column) {
 
 // Add to Column List, Reset textbox
 function addToColumn(column) {
-  const itemText = addItems[column].textContext;
+  const itemText = addItems[column].textContent;
   const selectedArray = listArrays[column];
   selectedArray.push(itemText);
-  addItems[column].textContext;
+  addItems[column].textContent = "";
   updateDOM();
 }
 
 // Show Add Item Input Box
 function showInputBox(column) {
   addBtns[column].style.visibility = "hidden";
-  addItemBtns[column].style.display = "flex";
+  saveItemBtns[column].style.display = "flex";
   addItemContainers[column].style.display = "flex";
 }
 
 // Hide Item Input Box
 function hideInputBox(column) {
   addBtns[column].style.visibility = "visible";
-  addItemBtns[column].style.display = "none";
+  saveItemBtns[column].style.display = "none";
   addItemContainers[column].style.display = "none";
   addToColumn(column);
 }
@@ -167,9 +167,9 @@ function rebuildArrays() {
 }
 
 // When item starts dragging
-function(e) {
-    draggedItem = e.target;
-    dragging = true;
+function drag(e) {
+  draggedItem = e.target;
+  dragging = true;
 }
 
 // When the Item Enters The Column Area
