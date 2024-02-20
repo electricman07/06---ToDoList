@@ -5,8 +5,8 @@ const addItems = document.querySelectorAll(".add-item");
 // Item Lists
 const listColumns = document.querySelectorAll(".drag-item-list");
 const itemList = document.getElementById("item-list");
-const progressList = document.getElementById("progress-link");
-const completedList = document.getElementById("complete-list");
+const progressList = document.getElementById("progress-list");
+const completeList = document.getElementById("complete-list");
 const onHoldList = document.getElementById("on-hold-list");
 
 // Items
@@ -76,3 +76,39 @@ function createItemEl(ColumnEl, column, item, index) {
   // Append to the DOM
   ColumnEl.appendChild(listEl);
 }
+// Update Columns in DOM - Reset HTML, Filter Array, Update localStorage
+function updateDOM() {
+  // Check localStorage once
+  if (!updatedOnLoad) {
+    getSavedColumns();
+  }
+  // Item Column
+  itemList.textContent = "";
+  itemListArray.forEach((toDoItem, index) => {
+    createItemEl(itemList, 0, toDoItem, index);
+  });
+  itemListArray = filterArray(itemListArray);
+  // Progress Column
+  progressList.textContent = "";
+  progressListArray.forEach((progressItem, index) => {
+    createItemEl(progressList, 1, progressItem, index);
+  });
+  progressListArray = filterArray(progressListArray);
+  // Complete Column
+  completeList.textContent = "";
+  completeListArray.forEach((completeItem, index) => {
+    createItemEl(completeList, 2, completeItem, index);
+  });
+  completeListArray = filterArray(completeListArray);
+  // On Hold Column
+  onHoldList.textContent = "";
+  onHoldListArray.forEach((onHoldItem, index) => {
+    createItemEl(onHoldList, 3, onHoldItem, index);
+  });
+  onHoldListArray = filterArray(onHoldListArray);
+  // Run getSavedColumns only once, Update localStorage
+  updatedOnLoad = true;
+  updateSavedColumns();
+}
+
+updateDOM();
