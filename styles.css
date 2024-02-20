@@ -218,6 +218,10 @@ ul {
   outline: none;
 }
 
+.icon {
+  float: right;
+}
+
 /* Media Query: Laptop */
 @media screen and (max-width: 1800px) {
   .main-title {
