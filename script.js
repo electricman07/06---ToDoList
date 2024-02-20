@@ -129,4 +129,13 @@ function updateItem(id, column) {
   }
 }
 
+// Add to Column List, Reset textbox
+function addToColumn(column) {
+  const itemText = addItems[column].textContext;
+  const selectedArray = listArrays[column];
+  selectedArray.push(itemText);
+  addItems[column].textContext;
+  updateDOM();
+}
+
 updateDOM();
