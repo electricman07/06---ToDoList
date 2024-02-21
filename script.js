@@ -76,7 +76,9 @@ function createItemEl(ColumnEl, column, item, index) {
   //   Add trashcan icon
   const trashCanEl = document.createElement("i");
   trashCanEl.classList.add("fa-solid", "fa-trash", "icon");
+  trashCanEl.setAttribute("onclick", `deleteItem(${index}, ${column})`);
   listEl.append(trashCanEl);
+
   // Append to the DOM
   ColumnEl.appendChild(listEl);
 }
@@ -119,6 +121,21 @@ function updateDOM() {
 function updateItem(id, column) {
   const selectedArray = listArrays[column];
   const selectedColumnEl = listColumns[column].children;
+  if (!dragging) {
+    if (!selectedColumnEl[id].textContent) {
+      delete selectedArray[id];
+    } else {
+      selectedArray[id] = selectedColumnEl[id].textContent;
+    }
+    updateDOM();
+  }
+}
+
+// Delete Item
+function deleteItem(id, column) {
+  const selectedArray = listArrays[column];
+  const selectedColumnEl = listColumns[column].children;
+  selectedColumnEl[id].textContent = "";
   if (!dragging) {
     if (!selectedColumnEl[id].textContent) {
       delete selectedArray[id];
@@ -197,4 +214,5 @@ function drop(e) {
   dragging = false;
   rebuildArrays();
 }
+
 updateDOM();
